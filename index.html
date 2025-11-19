@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Programa Mindful Kids en Colegio Tlahtoani: yoga, meditación y habilidades socioemocionales para kínder y primaria." />
+  <title>Tlahtoani • Mindful Kids</title>
+  <style>
+    :root{
+      --bg:#fffaf6;
+      --primary:#00695c;     /* verde principal */
+      --accent:#c62828;      /* rojo/verde navideño opcional */
+      --muted:#6b6b6b;
+      --card:#ffffff;
+      --glass: rgba(255,255,255,0.6);
+      --radius:14px;
+      --maxw:1100px;
+      --shadow: 0 6px 18px rgba(10,10,10,0.08);
+      --gap:18px;
+      font-family: Inter, "Segoe UI", Roboto, system-ui, -apple-system, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: linear-gradient(180deg,#f0fff9 0%, #fffaf6 60%);
+      color:#133;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:24px;
+      display:flex;
+      justify-content:center;
+      font-size:16px;
+    }
+    .container{width:100%; max-width:var(--maxw);}
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:20px;
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .logo{
+      width:56px; height:56px;
+      background:linear-gradient(135deg,var(--primary), #26a69a);
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      color:white; font-weight:700;
+      box-shadow:var(--shadow);
+      flex-shrink:0;
+    }
+    .brand h1{font-size:18px; margin:0}
+    .brand p{margin:0; font-size:13px; color:var(--muted)}
+    nav{display:flex; gap:10px; align-items:center;}
+    .btn{
+      background:var(--primary); color:white; border:none; padding:10px 14px; border-radius:10px;
+      cursor:pointer; font-weight:600; box-shadow:0 6px 12px rgba(2,120,110,0.12);
+    }
+    .hero{
+      display:grid;
+      grid-template-columns:1fr 380px;
+      gap:var(--gap);
+      align-items:center;
+      margin-bottom:28px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:var(--shadow);
+    }
+    .hero-left h2{margin:0 0 10px 0; font-size:28px; color:var(--primary)}
+    .hero-left p{margin:0 0 18px 0; color:var(--muted)}
+    .badges{display:flex; gap:10px; margin-bottom:10px; flex-wrap:wrap}
+    .badge{background:linear-gradient(90deg,#e8f7f2,#fff); padding:8px 10px; border-radius:10px; font-weight:600; font-size:14px; color:var(--primary)}
+    /* Right side hero preview */
+    .hero-right{
+      padding:18px;
+      display:flex; flex-direction:column; gap:12px;
+      align-items:stretch;
+    }
+    .preview{
+      background:linear-gradient(180deg, rgba(255,255,255,0.7), rgba(250,250,250,0.6));
+      padding:14px; border-radius:12px; display:flex; gap:12px; align-items:center;
+    }
+    .preview .icon{
+      width:56px; height:56px; border-radius:10px; display:grid; place-items:center; font-weight:700; background:var(--glass);
+    }
+    .preview h4{margin:0;font-size:15px}
+    .cols{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px}
+    .col{background:linear-gradient(180deg,#ffffff,#fbfffe); padding:10px; border-radius:10px; text-align:center; font-size:13px}
+    main{display:grid; grid-template-columns: 1fr 340px; gap:18px; align-items:start;}
+    @media (max-width:920px){
+      .hero{grid-template-columns:1fr;}
+      main{grid-template-columns:1fr;}
+    }
+    .section{margin-bottom:18px}
+    h3{margin:0 0 10px 0; color:var(--primary)}
+    .activities{display:grid; grid-template-columns:repeat(2,1fr); gap:12px}
+    .activity{padding:12px; border-radius:12px; background:linear-gradient(180deg,#fff,#f7fffb); box-shadow:0 6px 14px rgba(2,120,110,0.04)}
+    .activity h4{margin:0 0 6px 0}
+    .benefits{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+    .benefit{padding:12px; border-radius:12px; background:#fff; box-shadow:var(--shadow); text-align:center}
+    .schedule table{width:100%; border-collapse:collapse}
+    .schedule th, .schedule td{padding:10px; text-align:left; border-bottom:1px solid #eee}
+    .cta{display:flex; gap:10px; margin-top:10px}
+    footer{margin-top:30px; color:var(--muted); font-size:14px; text-align:center}
+    /* Accordion FAQ */
+    .faq .item{border-radius:10px; overflow:hidden; margin-bottom:8px; background:#fff}
+    .faq button{width:100%; padding:12px; text-align:left; border:none; background:transparent; display:flex; justify-content:space-between; align-items:center; cursor:pointer}
+    .faq .panel{padding:12px 14px; border-top:1px solid #f0f0f0; color:var(--muted); display:none}
+    /* contact */
+    form label{display:block; font-size:13px; margin-bottom:6px}
+    form input, form textarea, form select{
+      width:100%; padding:10px; border-radius:8px; border:1px solid #e6e6e6; margin-bottom:10px; font-size:14px;
+    }
+    .small{font-size:13px; color:var(--muted)}
+    /* small helpers */
+    .pill{display:inline-block; padding:6px 10px; border-radius:999px; background:#f1fffb; color:var(--primary); font-weight:700}
+    /* tiny animation */
+    .floaty{animation:float 6s ease-in-out infinite}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">T</div>
+        <div>
+          <h1>Colegio Tlahtoani</h1>
+          <p>Programa Mindful Kids — kínder y primaria</p>
+        </div>
+      </div>
+
+      <nav aria-label="Menú principal">
+        <a class="small" href="#programa">Programa</a>
+        <a class="small" href="#horarios">Horarios</a>
+        <a class="small" href="#inscripcion">Inscripción</a>
+        <button class="btn" onclick="document.getElementById('inscripcion').scrollIntoView({behavior:'smooth'})">Inscríbete</button>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left card">
+        <div class="badges">
+          <div class="badge">Kínder • Primaria</div>
+          <div class="badge">Duración: 8 semanas</div>
+          <div class="badge">Clases semanales</div>
+        </div>
+
+        <h2>Tlahtoani Mindful Kids</h2>
+        <p>Un espacio amable donde los niños aprenden a reconocer sus emociones, concentrarse y relajarse mediante yoga, respiración y actividades lúdicas. Ideal para apoyar el rendimiento escolar y el bienestar emocional.</p>
+
+        <div class="cta">
+          <button class="btn" onclick="document.getElementById('inscripcion').scrollIntoView({behavior:'smooth'})">Inscripciones abiertas</button>
+          <a class="small" href="#programa">Ver programa →</a>
+        </div>
+
+        <div style="margin-top:14px" class="small">
+          <strong>Dirigido a:</strong> 3–12 años • <strong>Imparte:</strong> Equipo certificado en mindfulness y yoga infantil.
+        </div>
+      </div>
+
+      <aside class="hero-right card">
+        <div style="display:flex; justify-content:space-between; align-items:start">
+          <div>
+            <div class="preview">
+              <div class="icon floaty" aria-hidden="true">🧘</div>
+              <div>
+                <h4>Clases prácticas y divertidas</h4>
+                <div class="small">Sesiones breves adaptadas por edades</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cols">
+          <div class="col"><strong>30 min</strong><div class="small">Kínder</div></div>
+          <div class="col"><strong>45 min</strong><div class="small">Primaria (inicial)</div></div>
+          <div class="col"><strong>60 min</strong><div class="small">Primaria (avanzado)</div></div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- MAIN -->
+    <main>
+      <div>
+        <!-- Programa -->
+        <section id="programa" class="section card">
+          <h3>¿Qué incluye el programa?</h3>
+          <div class="activities" aria-hidden="false">
+            <div class="activity">
+              <h4>Yoga infantil</h4>
+              <p class="small">Posturas lúdicas para mejorar equilibrio, fuerza y coordinación.</p>
+            </div>
+            <div class="activity">
+              <h4>Mindfulness</h4>
+              <p class="small">Ejercicios de respiración y atención focalizada de 3–7 minutos.</p>
+            </div>
+            <div class="activity">
+              <h4>Inteligencia emocional</h4>
+              <p class="small">Dinámicas para identificar y expresar emociones de forma saludable.</p>
+            </div>
+            <div class="activity">
+              <h4>Relajación guiada</h4>
+              <p class="small">Visualizaciones y ejercicios de cuerpo para calmar la mente.</p>
+            </div>
+          </div>
+
+          <div style="margin-top:12px">
+            <h4>Metodología</h4>
+            <p class="small">Sesiones cortas, interactivas y con materiales visuales. Seguimiento por edades, con guía para padres y pequeñas tareas para practicar en casa.</p>
+          </div>
+        </section>
+
+        <!-- Beneficios -->
+        <section class="section">
+          <h3>Beneficios para los estudiantes</h3>
+          <div class="benefits">
+            <div class="benefit">
+              <strong>Mejor atención</strong>
+              <div class="small">Mayor concentración en clase.</div>
+            </div>
+            <div class="benefit">
+              <strong>Regulación emocional</strong>
+              <div class="small">Estrategias prácticas para gestionar rabia y ansiedad.</div>
+            </div>
+            <div class="benefit">
+              <strong>Mejor convivencia</strong>
+              <div class="small">Empatía y resolución pacífica de conflictos.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Horarios -->
+        <section id="horarios" class="section card schedule">
+          <h3>Horarios y duración</h3>
+          <table aria-describedby="schedule-desc">
+            <thead>
+              <tr><th>Grupo</th><th>Día</th><th>Horario</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Kínder</td><td>Martes</td><td>09:00 – 09:30</td></tr>
+              <tr><td>Primaria (6–8 años)</td><td>Miércoles</td><td>13:00 – 13:45</td></tr>
+              <tr><td>Primaria (9–12 años)</td><td>Jueves</td><td>15:00 – 16:00</td></tr>
+            </tbody>
+          </table>
+          <div id="schedule-desc" class="small" style="margin-top:8px">Cada bloque consta de 8 sesiones semanales. Se emite constancia al finalizar el ciclo.</div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section card faq">
+          <h3>Preguntas frecuentes</h3>
+
+          <div class="item">
+            <button aria-expanded="false" onclick="toggleFAQ(this)">
+              ¿Necesito llevar algo? <span class="small">→</span>
+            </button>
+            <div class="panel">Ropa cómoda, una botella de agua y ganas de participar. Nosotros proporcionamos colchonetas si se requiere.</div>
+          </div>
+
+          <div class="item">
+            <button aria-expanded="false" onclick="toggleFAQ(this)">
+              ¿Los padres participan? <span class="small">→</span>
+            </button>
+            <div class="panel">Haremos 1 sesión informativa para padres y materiales para practicar en casa.</div>
+          </div>
+
+          <div class="item">
+            <button aria-expanded="false" onclick="toggleFAQ(this)">
+              ¿Hay requisitos médicos? <span class="small">→</span>
+            </button>
+            <div class="panel">Notificar cualquier condición médica al momento de la inscripción. Las actividades son de bajo impacto.</div>
+          </div>
+        </section>
+      </div>
+
+      <!-- SIDEBAR: Inscripción / Contacto -->
+      <aside>
+        <section id="inscripcion" class="section card">
+          <h3>Inscripción</h3>
+          <p class="small">Cupo limitado. Reserva tu lugar en el próximo ciclo.</p>
+
+          <!-- Simple form: change action to your backend endpoint if available -->
+          <form id="signupForm" onsubmit="handleForm(event)">
+            <label for="nombre">Nombre del estudiante</label>
+            <input id="nombre" name="nombre" required placeholder="Ej. María Pérez" />
+
+            <label for="edad">Edad</label>
+            <select id="edad" name="edad" required>
+              <option value="">Selecciona</option>
+              <option>3</option><option>4</option><option>5</option>
+              <option>6</option><option>7</option><option>8</option>
+              <option>9</option><option>10</option><option>11</option><option>12</option>
+            </select>
+
+            <label for="tutor">Nombre del tutor / contacto</label>
+            <input id="tutor" name="tutor" required placeholder="Nombre del padre/madre/tutor" />
+
+            <label for="email">Correo electrónico</label>
+            <input id="email" name="email" type="email" required placeholder="correo@ejemplo.com" />
+
+            <label for="mensaje">Mensaje / observaciones</label>
+            <textarea id="mensaje" name="mensaje" rows="3" placeholder="Alergias, horario preferido, etc."></textarea>
+
+            <button class="btn" type="submit">Enviar inscripción</button>
+            <div id="formInfo" class="small" style="margin-top:8px">Recibirás un correo de confirmación (o atenderemos vía teléfono en caso de no contar con backend).</div>
+          </form>
+        </section>
+
+        <section class="section card">
+          <h3>Contacto</h3>
+          <p class="small"><strong>Colegio Tlahtoani</strong><br>Dirección: Av. Ejemplo 123, Guadalajara, Jalisco</p>
+          <p class="small">Tel: +52 33 2037 0882<br>Email: <a href="mailto:juanpahdezreyes11@gmail.com">juanpahdezreyes11@gmail.com</a></p>
+          <div style="margin-top:10px"><span class="pill">Cupos limitados</span></div>
+        </section>
+
+        <section class="section card">
+          <h3>Profesionales</h3>
+          <p class="small">Equipo certificado en yoga infantil y pedagogía emocional. Todos los docentes cuentan con verificación y formación para trabajar con niños.</p>
+        </section>
+      </aside>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Colegio Tlahtoani • Programa Mindful Kids — Diseñado para el bienestar de tus hijos.
+    </footer>
+  </div>
+
+  <script>
+    // tiny scripts: year, faq toggle, simple form handler
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function toggleFAQ(btn){
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', !expanded);
+      const panel = btn.nextElementSibling;
+      if(!expanded){ panel.style.display = 'block'; }
+      else { panel.style.display = 'none'; }
+    }
+
+    // Simple form handler: opens mail client as fallback and shows confirmation
+    function handleForm(e){
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        nombre: form.nombre.value,
+        edad: form.edad.value,
+        tutor: form.tutor.value,
+        email: form.email.value,
+        mensaje: form.mensaje.value
+      };
+      // Attempt: open mailto with structured body (fallback)
+      const subject = encodeURIComponent('Inscripción: Tlahtoani Mindful Kids - ' + data.nombre);
+      const body = encodeURIComponent(
+        `Nombre estudiante: ${data.nombre}\nEdad: ${data.edad}\nTutor: ${data.tutor}\nEmail: ${data.email}\nObservaciones: ${data.mensaje}`
+      );
+      // Change recipient to your school email
+      const recipient = 'juanpahdezreyes11@gmail.com';
+      window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+
+      // show tiny confirmation
+      const info = document.getElementById('formInfo');
+      info.textContent = 'Formulario enviado. Te llegará un correo de confirmación o te contactaremos pronto.';
+      form.reset();
+    }
+  </script>
+</body>
+</html>
