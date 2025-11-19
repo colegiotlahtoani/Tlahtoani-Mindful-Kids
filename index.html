@@ -40,14 +40,39 @@
   }
   header h1 {
     margin: 0;
-    font-size: 22px;
+    font-size: 26px;
+    font-weight: 800;
     color: var(--primary);
   }
   nav a {
     margin-left: 14px;
     color: var(--primary);
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
+    font-size: 18px;
+  }
+
+  /* MOBILE HEADER IMPROVED */
+  @media (max-width: 650px) {
+    header {
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+    }
+    header h1 {
+      font-size: 32px;
+    }
+    nav {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+    nav a {
+      font-size: 20px;
+      padding: 6px 10px;
+      background: #e8f9f6;
+      border-radius: 10px;
+    }
   }
 
   .btn {
@@ -250,51 +275,4 @@
       </div>
       <div class="benefit">
         <strong>Mayor autoestima</strong>
-        <p>Actividades diseñadas para fortalecer su seguridad.</p>
-      </div>
-      <div class="benefit">
-        <strong>Mejor convivencia</strong>
-        <p>Niños más empáticos y tranquilos.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- HORARIOS -->
-  <section class="section card" id="horarios">
-    <h3>Horarios</h3>
-    <table>
-      <tr><th>Grupo</th><th>Día</th><th>Horario</th></tr>
-      <tr><td>Kínder</td><td>Martes</td><td>9:00 - 9:30</td></tr>
-      <tr><td>Primaria 1</td><td>Miércoles</td><td>13:00 - 13:45</td></tr>
-      <tr><td>Primaria 2</td><td>Jueves</td><td>15:00 - 16:00</td></tr>
-    </table>
-  </section>
-
-  <!-- INSCRIPCIÓN -->
-  <section class="section card" id="inscripcion">
-    <h3>Inscripción</h3>
-
-    <form action="mailto:juanpahdezreyes11@gmail.com" method="POST" enctype="text/plain">
-      <input type="text" name="Nombre del estudiante" placeholder="Nombre del estudiante" required>
-      <select name="Edad" required>
-        <option value="">Edad</option>
-        <option>3</option><option>4</option><option>5</option>
-        <option>6</option><option>7</option><option>8</option>
-        <option>9</option><option>10</option><option>11</option><option>12</option>
-      </select>
-      <input type="text" name="Tutor" placeholder="Nombre del padre/madre" required>
-      <input type="email" name="Correo" placeholder="Correo electrónico" required>
-      <textarea name="Mensaje" rows="4" placeholder="Comentarios adicionales"></textarea>
-
-      <button class="btn" type="submit">Enviar inscripción</button>
-    </form>
-  </section>
-
-</div>
-
-<footer>
-  © 2025 Colegio Tlahtoani – Mindful Kids
-</footer>
-
-</body>
-</html>
+        <p>Actividades diseñadas para
