@@ -65,14 +65,26 @@
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
   }
   
-  header h1 {
-    margin: 0;
-    font-size: 26px;
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .logo-line-1 {
+    font-size: 22px;
     font-weight: 800;
     color: var(--primary);
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    margin: 0;
+    line-height: 1;
+  }
+  
+  .logo-line-2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--secondary);
+    margin: 5px 0 0 0;
+    line-height: 1;
   }
   
   header h1 i {
@@ -81,7 +93,7 @@
   
   nav {
     display: flex;
-    gap: 20px;
+    gap: 15px;
   }
   
   nav a {
@@ -93,6 +105,7 @@
     border-radius: 30px;
     transition: var(--transition);
     position: relative;
+    white-space: nowrap;
   }
   
   nav a:hover {
@@ -105,69 +118,48 @@
     color: white;
   }
 
-  /* MOBILE MENU */
-  .mobile-menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: var(--primary);
-    cursor: pointer;
-    padding: 5px;
-  }
-
-  .mobile-nav {
-    display: none;
-    flex-direction: column;
-    background: white;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    padding: 20px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    border-radius: 0 0 var(--radius) var(--radius);
-    z-index: 99;
-  }
-
-  .mobile-nav.active {
-    display: flex;
-  }
-
-  .mobile-nav a {
-    padding: 12px 15px;
-    text-decoration: none;
-    color: var(--primary);
-    font-weight: 600;
-    border-bottom: 1px solid #f0f0f0;
-    transition: var(--transition);
-  }
-
-  .mobile-nav a:last-child {
-    border-bottom: none;
-  }
-
-  .mobile-nav a:hover {
-    background: var(--primary-light);
-    padding-left: 20px;
-  }
-
   /* MOBILE HEADER IMPROVED */
   @media (max-width: 768px) {
     header {
       padding: 12px 0;
+      flex-direction: column;
+      gap: 15px;
     }
     
-    header h1 {
-      font-size: 22px;
+    .logo {
+      align-items: center;
+      text-align: center;
     }
     
-    .desktop-nav {
-      display: none;
+    nav {
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
     }
     
-    .mobile-menu-btn {
-      display: block;
+    nav a {
+      font-size: 14px;
+      padding: 6px 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    nav {
+      gap: 8px;
+    }
+    
+    nav a {
+      font-size: 13px;
+      padding: 5px 10px;
+    }
+    
+    .logo-line-1 {
+      font-size: 20px;
+    }
+    
+    .logo-line-2 {
+      font-size: 16px;
     }
   }
 
@@ -378,13 +370,44 @@
     color: var(--accent);
   }
 
-  /* HORARIOS */
+  /* HORARIOS - MEJORADO PARA MÓVIL */
   .schedule-container {
     background: white;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     padding: 30px;
     overflow-x: auto;
+  }
+
+  .schedule-mobile {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .schedule-card {
+    background: var(--primary-light);
+    border-radius: var(--radius);
+    padding: 20px;
+    border-left: 5px solid var(--secondary);
+  }
+
+  .schedule-card h4 {
+    margin: 0 0 10px;
+    color: var(--primary);
+    font-size: 18px;
+  }
+
+  .schedule-card p {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .schedule-card i {
+    color: var(--accent);
+    width: 20px;
   }
 
   table {
@@ -559,6 +582,16 @@
     }
   }
 
+  @media (max-width: 768px) {
+    .schedule-container table {
+      display: none;
+    }
+    
+    .schedule-mobile {
+      display: flex;
+    }
+  }
+
   @media (max-width: 600px) {
     .container {
       padding: 15px;
@@ -598,94 +631,21 @@
   .delay-1 { animation-delay: 0.2s; }
   .delay-2 { animation-delay: 0.4s; }
   .delay-3 { animation-delay: 0.6s; }
-
-  /* TESTIMONIOS */
-  .testimonials {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    margin-top: 40px;
-  }
-
-  .testimonial {
-    background: white;
-    padding: 25px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    position: relative;
-  }
-
-  .testimonial::before {
-    content: '"';
-    font-size: 80px;
-    color: var(--primary-light);
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    line-height: 1;
-  }
-
-  .testimonial p {
-    font-style: italic;
-    margin-bottom: 20px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-
-  .testimonial-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: var(--primary-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary);
-    font-weight: bold;
-  }
-
-  .testimonial-info h4 {
-    margin: 0;
-    color: var(--primary);
-  }
-
-  .testimonial-info p {
-    margin: 0;
-    font-size: 14px;
-    color: var(--muted);
-    font-style: normal;
-  }
 </style>
 
 </head>
 <body>
 
 <header class="container">
-  <h1><i class="fas fa-child"></i> Colegio Tlahtoani • Mindful Kids</h1>
+  <div class="logo">
+    <h1 class="logo-line-1">Colegio Tlahtoani</h1>
+    <h2 class="logo-line-2">Mindful Kids</h2>
+  </div>
   
-  <nav class="desktop-nav">
+  <nav>
     <a href="#programa" class="active">Programa</a>
     <a href="#beneficios">Beneficios</a>
     <a href="#horarios">Horarios</a>
-    <a href="#testimonios">Testimonios</a>
-    <a href="#inscripcion">Inscripción</a>
-  </nav>
-  
-  <button class="mobile-menu-btn" id="mobileMenuBtn">
-    <i class="fas fa-bars"></i>
-  </button>
-  
-  <nav class="mobile-nav" id="mobileNav">
-    <a href="#programa">Programa</a>
-    <a href="#beneficios">Beneficios</a>
-    <a href="#horarios">Horarios</a>
-    <a href="#testimonios">Testimonios</a>
     <a href="#inscripcion">Inscripción</a>
   </nav>
 </header>
@@ -815,47 +775,32 @@
           </tr>
         </tbody>
       </table>
-    </div>
-  </section>
-
-  <!-- TESTIMONIOS -->
-  <section class="section" id="testimonios">
-    <div class="section-header">
-      <h3>Lo que dicen los padres</h3>
-      <p class="subtitle">Experiencias reales de familias que han confiado en nuestro programa</p>
-    </div>
-
-    <div class="testimonials">
-      <div class="testimonial fade-in">
-        <p>Mi hija de 7 años ha mejorado notablemente su capacidad para concentrarse en la tarea escolar. Ahora puede sentarse a hacer sus deberes sin distraerse constantemente.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">M</div>
-          <div class="testimonial-info">
-            <h4>María González</h4>
-            <p>Madre de Sofia (7 años)</p>
-          </div>
+      
+      <!-- Versión móvil de horarios -->
+      <div class="schedule-mobile">
+        <div class="schedule-card">
+          <h4>Kínder</h4>
+          <p><i class="fas fa-child"></i> 3-5 años</p>
+          <p><i class="fas fa-calendar"></i> Lunes y Miércoles</p>
+          <p><i class="fas fa-clock"></i> 3:00 PM - 4:00 PM</p>
         </div>
-      </div>
-
-      <div class="testimonial fade-in delay-1">
-        <p>Desde que mi hijo participa en el programa, ha aprendido a manejar mejor su frustración. Ahora respira profundamente cuando se siente enojado en lugar de tener berrinches.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">C</div>
-          <div class="testimonial-info">
-            <h4>Carlos Rodríguez</h4>
-            <p>Padre de Diego (5 años)</p>
-          </div>
+        <div class="schedule-card">
+          <h4>Primaria Baja</h4>
+          <p><i class="fas fa-child"></i> 6-8 años</p>
+          <p><i class="fas fa-calendar"></i> Martes y Jueves</p>
+          <p><i class="fas fa-clock"></i> 3:30 PM - 4:30 PM</p>
         </div>
-      </div>
-
-      <div class="testimonial fade-in delay-2">
-        <p>Las técnicas de mindfulness han ayudado a mi hija con sus problemas para dormir. Ahora practica la respiración consciente antes de acostarse y duerme mucho mejor.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">A</div>
-          <div class="testimonial-info">
-            <h4>Ana Martínez</h4>
-            <p>Madre de Valeria (9 años)</p>
-          </div>
+        <div class="schedule-card">
+          <h4>Primaria Alta</h4>
+          <p><i class="fas fa-child"></i> 9-12 años</p>
+          <p><i class="fas fa-calendar"></i> Lunes y Miércoles</p>
+          <p><i class="fas fa-clock"></i> 4:30 PM - 5:30 PM</p>
+        </div>
+        <div class="schedule-card">
+          <h4>Fin de semana</h4>
+          <p><i class="fas fa-child"></i> 5-12 años</p>
+          <p><i class="fas fa-calendar"></i> Sábados</p>
+          <p><i class="fas fa-clock"></i> 10:00 AM - 11:30 AM</p>
         </div>
       </div>
     </div>
@@ -967,26 +912,6 @@
 </footer>
 
 <script>
-  // Menú móvil
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  const mobileNav = document.getElementById('mobileNav');
-  
-  mobileMenuBtn.addEventListener('click', () => {
-    mobileNav.classList.toggle('active');
-    mobileMenuBtn.innerHTML = mobileNav.classList.contains('active') 
-      ? '<i class="fas fa-times"></i>' 
-      : '<i class="fas fa-bars"></i>';
-  });
-  
-  // Cerrar menú móvil al hacer clic en un enlace
-  const mobileLinks = document.querySelectorAll('.mobile-nav a');
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileNav.classList.remove('active');
-      mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-    });
-  });
-  
   // Cambiar estilo del header al hacer scroll
   window.addEventListener('scroll', () => {
     const header = document.querySelector('header');
