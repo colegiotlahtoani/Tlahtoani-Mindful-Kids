@@ -51,17 +51,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 14px 0;
+    padding: 20px 0;
     position: sticky;
     top: 0;
     background: rgba(249, 253, 251, 0.95);
     backdrop-filter: blur(10px);
     z-index: 100;
     transition: var(--transition);
+    min-height: 100px;
   }
   
   header.scrolled {
-    padding: 10px 0;
+    padding: 15px 0;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
   }
   
@@ -72,7 +73,7 @@
   }
   
   .logo-line-1 {
-    font-size: 22px;
+    font-size: 28px;
     font-weight: 800;
     color: var(--primary);
     margin: 0;
@@ -80,10 +81,10 @@
   }
   
   .logo-line-2 {
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 600;
     color: var(--secondary);
-    margin: 5px 0 0 0;
+    margin: 8px 0 0 0;
     line-height: 1;
   }
   
@@ -93,15 +94,16 @@
   
   nav {
     display: flex;
-    gap: 15px;
+    gap: 20px;
+    align-items: center;
   }
   
   nav a {
     color: var(--primary);
     font-weight: 600;
     text-decoration: none;
-    font-size: 16px;
-    padding: 8px 16px;
+    font-size: 18px;
+    padding: 12px 20px;
     border-radius: 30px;
     transition: var(--transition);
     position: relative;
@@ -121,9 +123,10 @@
   /* MOBILE HEADER IMPROVED */
   @media (max-width: 768px) {
     header {
-      padding: 12px 0;
+      padding: 15px 0;
       flex-direction: column;
-      gap: 15px;
+      gap: 20px;
+      min-height: auto;
     }
     
     .logo {
@@ -131,16 +134,24 @@
       text-align: center;
     }
     
+    .logo-line-1 {
+      font-size: 24px;
+    }
+    
+    .logo-line-2 {
+      font-size: 20px;
+    }
+    
     nav {
       width: 100%;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
     }
     
     nav a {
-      font-size: 14px;
-      padding: 6px 12px;
+      font-size: 16px;
+      padding: 10px 16px;
     }
   }
 
@@ -150,16 +161,16 @@
     }
     
     nav a {
-      font-size: 13px;
-      padding: 5px 10px;
+      font-size: 14px;
+      padding: 8px 12px;
     }
     
     .logo-line-1 {
-      font-size: 20px;
+      font-size: 22px;
     }
     
     .logo-line-2 {
-      font-size: 16px;
+      font-size: 18px;
     }
   }
 
@@ -192,6 +203,18 @@
 
   .btn-accent:hover {
     background: #f9a825;
+  }
+
+  .btn-whatsapp {
+    background: #25D366;
+    color: white;
+    font-size: 18px;
+    padding: 16px 32px;
+  }
+
+  .btn-whatsapp:hover {
+    background: #128C7E;
+    transform: translateY(-3px);
   }
 
   /* HERO */
@@ -436,126 +459,80 @@
     background: #f5fdfb;
   }
 
-  /* FORMULARIO */
-  .form-container {
+  /* SECCIÓN INSCRIPCIÓN CON WHATSAPP */
+  .whatsapp-section {
     background: white;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    padding: 40px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    padding: 50px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 30px;
   }
 
-  .form-info {
-    padding-right: 20px;
-  }
-
-  .form-info h3 {
-    color: var(--primary);
-    margin-top: 0;
-  }
-
-  .form-info ul {
-    padding-left: 20px;
-  }
-
-  .form-info li {
+  .whatsapp-icon {
+    font-size: 80px;
+    color: #25D366;
     margin-bottom: 10px;
-    color: var(--muted);
   }
 
-  form input, form textarea, form select {
-    width: 100%;
-    padding: 14px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
+  .whatsapp-text {
+    max-width: 600px;
+  }
+
+  .whatsapp-text h3 {
+    color: var(--primary);
+    font-size: 32px;
     margin-bottom: 15px;
-    font-size: 16px;
-    font-family: "Inter", Arial, sans-serif;
-    transition: var(--transition);
   }
 
-  form input:focus, form textarea:focus, form select:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(0, 121, 107, 0.1);
+  .whatsapp-text p {
+    color: var(--muted);
+    font-size: 18px;
+    margin-bottom: 10px;
   }
 
-  form .form-row {
+  .whatsapp-features {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+    width: 100%;
+    max-width: 600px;
   }
 
-  /* FOOTER */
-  footer {
+  .whatsapp-feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    background: var(--primary-light);
+    border-radius: var(--radius);
+  }
+
+  .whatsapp-feature i {
+    font-size: 30px;
+    color: var(--primary);
+  }
+
+  .whatsapp-feature p {
+    margin: 0;
+    font-weight: 600;
+    color: var(--primary);
+    text-align: center;
+  }
+
+  /* COPYRIGHT SIMPLE */
+  .copyright {
     text-align: center;
     margin-top: 60px;
-    padding: 40px 20px;
+    padding: 30px 20px;
     color: var(--muted);
-    background: white;
-    border-top: 1px solid #eaeaea;
-  }
-
-  .footer-content {
-    max-width: var(--maxw);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    text-align: left;
-  }
-
-  .footer-column h4 {
-    color: var(--primary);
-    margin-bottom: 20px;
-    font-size: 18px;
-  }
-
-  .footer-column p, .footer-column a {
-    color: var(--muted);
-    text-decoration: none;
-    margin-bottom: 10px;
-    display: block;
-    transition: var(--transition);
-  }
-
-  .footer-column a:hover {
-    color: var(--primary);
-    padding-left: 5px;
-  }
-
-  .social-links {
-    display: flex;
-    gap: 15px;
-    margin-top: 15px;
-  }
-
-  .social-links a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: var(--primary-light);
-    border-radius: 50%;
-    color: var(--primary);
-    transition: var(--transition);
-  }
-
-  .social-links a:hover {
-    background: var(--primary);
-    color: white;
-    transform: translateY(-3px);
-  }
-
-  .copyright {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #eaeaea;
-    text-align: center;
     font-size: 14px;
+    border-top: 1px solid #eaeaea;
   }
 
   /* RESPONSIVE */
@@ -573,12 +550,8 @@
       background: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 30%, rgba(255,255,255,0) 100%);
     }
     
-    .form-container {
-      grid-template-columns: 1fr;
-    }
-    
-    .form-info {
-      padding-right: 0;
+    .whatsapp-section {
+      padding: 30px;
     }
   }
 
@@ -589,6 +562,10 @@
     
     .schedule-mobile {
       display: flex;
+    }
+    
+    .whatsapp-features {
+      grid-template-columns: 1fr;
     }
   }
 
@@ -609,12 +586,16 @@
       font-size: 26px;
     }
     
-    .form-row {
-      grid-template-columns: 1fr !important;
-    }
-    
     .card, .benefit {
       padding: 20px;
+    }
+    
+    .whatsapp-section {
+      padding: 20px;
+    }
+    
+    .whatsapp-icon {
+      font-size: 60px;
     }
   }
 
@@ -713,18 +694,30 @@
 
     <div class="benefits">
       <div class="benefit fade-in">
-        <strong><i class="fas fa-bullseye"></i> Mejor concentración</strong>
-        <p>Atención plena para mejorar el rendimiento escolar y la capacidad de enfocarse en tareas.</p>
+        <strong><i class="fas fa-heartbeat"></i> Regulación emocional</strong>
+        <p>Aprende a identificar y gestionar sus emociones de manera saludable, desarrollando equilibrio emocional.</p>
       </div>
       <div class="benefit fade-in delay-1">
+        <strong><i class="fas fa-balance-scale"></i> Autocontrol</strong>
+        <p>Desarrolla la capacidad de manejar impulsos y tomar decisiones conscientes en situaciones desafiantes.</p>
+      </div>
+      <div class="benefit fade-in delay-2">
+        <strong><i class="fas fa-hands-helping"></i> Empatía</strong>
+        <p>Fomenta la comprensión y conexión con los sentimientos de los demás, mejorando las relaciones sociales.</p>
+      </div>
+      <div class="benefit fade-in delay-3">
+        <strong><i class="fas fa-bullseye"></i> Mayor concentración</strong>
+        <p>Mejora significativamente la capacidad de atención y enfoque en actividades académicas y cotidianas.</p>
+      </div>
+      <div class="benefit fade-in">
         <strong><i class="fas fa-wind"></i> Menos ansiedad</strong>
         <p>Técnicas de respiración y relajación para calmar la mente y manejar situaciones estresantes.</p>
       </div>
-      <div class="benefit fade-in delay-2">
+      <div class="benefit fade-in delay-1">
         <strong><i class="fas fa-star"></i> Mayor autoestima</strong>
         <p>Actividades diseñadas para fortalecer la confianza en sí mismos y su valor personal.</p>
       </div>
-      <div class="benefit fade-in delay-3">
+      <div class="benefit fade-in delay-2">
         <strong><i class="fas fa-users"></i> Mejores relaciones</strong>
         <p>Desarrollo de habilidades sociales y empatía para relacionarse positivamente con otros.</p>
       </div>
@@ -806,110 +799,49 @@
     </div>
   </section>
 
-  <!-- FORMULARIO -->
+  <!-- INSCRIPCIÓN CON WHATSAPP -->
   <section class="section" id="inscripcion">
     <div class="section-header">
       <h3>Inscripción</h3>
-      <p class="subtitle">Completa el formulario y nos pondremos en contacto contigo</p>
+      <p class="subtitle">Contáctanos directamente por WhatsApp para obtener información y realizar tu inscripción</p>
     </div>
 
-    <div class="form-container fade-in">
-      <div class="form-info">
-        <h3>¿Por qué elegir nuestro programa?</h3>
-        <ul>
-          <li>Instructores certificados en mindfulness infantil</li>
-          <li>Grupos reducidos para atención personalizada</li>
-          <li>Materiales incluidos</li>
-          <li>Ambiente seguro y acogedor</li>
-          <li>Seguimiento del progreso de cada niño</li>
-          <li>Flexibilidad de horarios</li>
-        </ul>
-        <p><strong>Precio especial:</strong> $1,200 MXN mensuales</p>
-        <p><i class="fas fa-phone"></i> Tel: 55 1234 5678</p>
-        <p><i class="fas fa-envelope"></i> Email: info@tlahtoanikids.edu.mx</p>
+    <div class="whatsapp-section fade-in">
+      <div class="whatsapp-icon">
+        <i class="fab fa-whatsapp"></i>
       </div>
-
-      <form id="inscriptionForm">
-        <div class="form-row">
-          <div>
-            <input type="text" placeholder="Nombre(s) *" required>
-          </div>
-          <div>
-            <input type="text" placeholder="Apellidos *" required>
-          </div>
+      
+      <div class="whatsapp-text">
+        <h3>¡Comunícate con nosotros!</h3>
+        <p>Obtén información detallada sobre nuestro programa, costos, horarios disponibles y realiza tu inscripción directamente por WhatsApp.</p>
+        <p>Nuestro equipo estará encantado de resolver todas tus dudas y guiarte en el proceso de inscripción.</p>
+      </div>
+      
+      <a href="https://beacons.ai/colegiotlahtoanii" target="_blank" class="btn btn-whatsapp">
+        <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+      </a>
+      
+      <div class="whatsapp-features">
+        <div class="whatsapp-feature">
+          <i class="fas fa-clock"></i>
+          <p>Respuesta rápida</p>
         </div>
-        
-        <div class="form-row">
-          <div>
-            <input type="email" placeholder="Email *" required>
-          </div>
-          <div>
-            <input type="tel" placeholder="Teléfono *" required>
-          </div>
+        <div class="whatsapp-feature">
+          <i class="fas fa-info-circle"></i>
+          <p>Información completa</p>
         </div>
-        
-        <input type="text" placeholder="Nombre del niño/a *" required>
-        
-        <div class="form-row">
-          <div>
-            <input type="number" placeholder="Edad *" min="3" max="12" required>
-          </div>
-          <div>
-            <select required>
-              <option value="" disabled selected>Selecciona grupo de interés</option>
-              <option>Kínder (3-5 años)</option>
-              <option>Primaria Baja (6-8 años)</option>
-              <option>Primaria Alta (9-12 años)</option>
-              <option>Fin de semana (5-12 años)</option>
-            </select>
-          </div>
+        <div class="whatsapp-feature">
+          <i class="fas fa-comments"></i>
+          <p>Atención personalizada</p>
         </div>
-        
-        <textarea placeholder="Comentarios o preguntas adicionales" rows="4"></textarea>
-        
-        <button type="submit" class="btn" style="width: 100%;">
-          <i class="fas fa-paper-plane"></i> Enviar solicitud
-        </button>
-      </form>
+      </div>
     </div>
   </section>
 </div>
 
-<footer>
-  <div class="footer-content">
-    <div class="footer-column">
-      <h4>Colegio Tlahtoani</h4>
-      <p>Mindful Kids Program</p>
-      <p>Desarrollando mentes felices y corazones conscientes</p>
-      <div class="social-links">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-whatsapp"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-    
-    <div class="footer-column">
-      <h4>Enlaces rápidos</h4>
-      <a href="#programa">Nuestro programa</a>
-      <a href="#beneficios">Beneficios</a>
-      <a href="#horarios">Horarios</a>
-      <a href="#inscripcion">Inscripción</a>
-    </div>
-    
-    <div class="footer-column">
-      <h4>Contacto</h4>
-      <p><i class="fas fa-map-marker-alt"></i> Av. Principal 123, Col. Centro</p>
-      <p><i class="fas fa-phone"></i> 55 1234 5678</p>
-      <p><i class="fas fa-envelope"></i> info@tlahtoanikids.edu.mx</p>
-      <p><i class="fas fa-clock"></i> Lunes a Viernes: 8:00 AM - 5:00 PM</p>
-    </div>
-  </div>
-  
-  <div class="copyright">
-    <p>&copy; 2023 Colegio Tlahtoani • Mindful Kids. Todos los derechos reservados.</p>
-  </div>
-</footer>
+<div class="copyright">
+  <p>&copy; 2023 Colegio Tlahtoani • Mindful Kids. Todos los derechos reservados.</p>
+</div>
 
 <script>
   // Cambiar estilo del header al hacer scroll
@@ -920,14 +852,6 @@
     } else {
       header.classList.remove('scrolled');
     }
-  });
-  
-  // Manejar envío del formulario
-  const form = document.getElementById('inscriptionForm');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('¡Gracias por tu interés! Nos pondremos en contacto contigo pronto.');
-    form.reset();
   });
   
   // Actualizar enlace activo en el menú al hacer scroll
