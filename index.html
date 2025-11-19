@@ -1,278 +1,154 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Tlahtoani Mindful Kids</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Colegio Tlahtoani • Mindful Kids</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f9fc;
+      color: #1a1a1a;
+    }
 
-<style>
-  :root {
-    --primary: #00796b;
-    --secondary: #26a69a;
-    --accent: #fbc02d;
-    --bg: #f9fdfb;
-    --text: #1a1a1a;
-    --muted: #6d6d6d;
-    --radius: 18px;
-    --shadow: 0 8px 20px rgba(0,0,0,0.08);
-    --maxw: 1150px;
-  }
-
-  body {
-    margin: 0;
-    background: var(--bg);
-    font-family: "Inter", Arial, sans-serif;
-    color: var(--text);
-  }
-
-  .container {
-    max-width: var(--maxw);
-    margin: auto;
-    padding: 20px;
-  }
-
-  /* HEADER */
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 0;
-  }
-  header h1 {
-    margin: 0;
-    font-size: 26px;
-    font-weight: 800;
-    color: var(--primary);
-  }
-  nav a {
-    margin-left: 14px;
-    color: var(--primary);
-    font-weight: 700;
-    text-decoration: none;
-    font-size: 18px;
-  }
-
-  /* MOBILE HEADER IMPROVED */
-  @media (max-width: 650px) {
     header {
-      flex-direction: column;
+      background: linear-gradient(135deg, #2a72ff, #4ea8ff);
+      color: white;
       text-align: center;
-      gap: 10px;
+      padding: 40px 20px;
     }
+
     header h1 {
-      font-size: 32px;
+      font-size: 2.4rem;
+      margin: 0;
+      font-weight: 800;
     }
+
     nav {
+      background: white;
+      padding: 15px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
       display: flex;
-      gap: 20px;
       justify-content: center;
+      gap: 25px;
     }
+
     nav a {
-      font-size: 20px;
-      padding: 6px 10px;
-      background: #e8f9f6;
-      border-radius: 10px;
+      text-decoration: none;
+      color: #1a1a1a;
+      font-size: 1.1rem;
+      font-weight: bold;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: 0.2s;
     }
-  }
 
-  .btn {
-    padding: 12px 18px;
-    background: var(--primary);
-    color: white;
-    border-radius: 12px;
-    border: none;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: var(--shadow);
-  }
-
-  /* HERO */
-  .hero {
-    margin-top: 20px;
-    background: white;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .hero-text {
-    padding: 35px;
-  }
-
-  .hero-text h2 {
-    color: var(--primary);
-    font-size: 32px;
-    margin: 0 0 10px;
-  }
-
-  .hero-text p {
-    color: var(--muted);
-    margin-bottom: 16px;
-  }
-
-  .hero-img {
-    width: 100%;
-    height: 100%;
-    background-image: url("https://images.pexels.com/photos/8613088/pexels-photo-8613088.jpeg?auto=compress&cs=tinysrgb&w=1200");
-    background-size: cover;
-    background-position: center;
-  }
-
-  /* FEATURES / ACTIVIDADES */
-  .section {
-    margin-top: 40px;
-  }
-
-  .section h3 {
-    font-size: 26px;
-    color: var(--primary);
-    margin-bottom: 12px;
-  }
-
-  .activities {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 18px;
-  }
-
-  .card {
-    background: white;
-    padding: 20px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-  }
-
-  .card img {
-    width: 100%;
-    border-radius: var(--radius);
-    margin-bottom: 14px;
-  }
-
-  /* BENEFICIOS */
-  .benefits {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 16px;
-  }
-
-  .benefit {
-    padding: 18px;
-    background: #e8f9f6;
-    border-left: 6px solid var(--secondary);
-    border-radius: var(--radius);
-  }
-
-  .benefit strong {
-    font-size: 18px;
-  }
-
-  /* HORARIOS */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  th, td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-  }
-
-  /* FORMULARIO */
-  form input, form textarea, form select {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
-    font-size: 15px;
-  }
-
-  /* FOOTER */
-  footer {
-    text-align: center;
-    margin-top: 40px;
-    padding: 20px;
-    color: var(--muted);
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 850px) {
-    .hero {
-      grid-template-columns: 1fr;
+    nav a:hover {
+      background: #e6f0ff;
     }
+
+    section {
+      padding: 50px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: #2a72ff;
+      margin-bottom: 10px;
+    }
+
+    p {
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+      margin: 20px 0;
+    }
+
     .hero-img {
-      height: 260px;
+      width: 100%;
+      border-radius: 20px;
+      margin-top: 20px;
     }
-  }
 
-</style>
-
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.9rem;
+      }
+      nav ul {
+        flex-direction: row;
+        gap: 12px;
+      }
+      nav a {
+        font-size: 0.95rem;
+        padding: 6px 10px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header class="container">
-  <h1>Colegio Tlahtoani • Mindful Kids</h1>
+  <header>
+    <h1>Colegio Tlahtoani • Mindful Kids</h1>
+    <img class="hero-img" src="https://i.imgur.com/SknuZLf.jpeg" alt="Niños felices en el colegio" />
+  </header>
+
   <nav>
-    <a href="#programa">Programa</a>
-    <a href="#horarios">Horarios</a>
-    <a href="#inscripcion">Inscripción</a>
+    <ul>
+      <li><a href="#programa">Programa</a></li>
+      <li><a href="#horarios">Horarios</a></li>
+      <li><a href="#inscripcion">Inscripción</a></li>
+    </ul>
   </nav>
-</header>
 
-<div class="container">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-text">
-      <h2>Bienestar emocional para tus hijos</h2>
-      <p>Un programa diseñado para el desarrollo emocional, atención plena y relajación de niños de kínder y primaria.</p>
-
-      <button class="btn" onclick="document.getElementById('inscripcion').scrollIntoView({behavior:'smooth'})">Inscribir ahora</button>
-    </div>
-    <div class="hero-img"></div>
-  </section>
-
-  <!-- ACTIVIDADES -->
-  <section class="section" id="programa">
-    <h3>Actividades del programa</h3>
-
-    <div class="activities">
-
-      <div class="card">
-        <img src="https://images.pexels.com/photos/8436587/pexels-photo-8436587.jpeg?auto=compress&cs=tinysrgb&w=1200">
-        <h4>Yoga infantil</h4>
-        <p>Posturas divertidas que ayudan a coordinación y fuerza corporal.</p>
-      </div>
-
-      <div class="card">
-        <img src="https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg?auto=compress&cs=tinysrgb&w=1200">
-        <h4>Mindfulness</h4>
-        <p>Respiración y concentración para mejorar la atención en clase.</p>
-      </div>
-
-      <div class="card">
-        <img src="https://images.pexels.com/photos/8613115/pexels-photo-8613115.jpeg?auto=compress&cs=tinysrgb&w=1200">
-        <h4>Inteligencia emocional</h4>
-        <p>Aprender a expresar emociones de forma sana.</p>
-      </div>
+  <section id="programa">
+    <h2>Programa Educativo</h2>
+    <div class="card">
+      <p>
+        En Colegio Tlahtoani ofrecemos un programa integral basado en aprendizaje activo,
+        mindfulness para niños y desarrollo socioemocional. Nuestro enfoque combina métodos
+        modernos con valores que fortalecen el crecimiento de cada alumno.
+      </p>
     </div>
   </section>
 
-  <!-- BENEFICIOS -->
-  <section class="section">
-    <h3>Beneficios</h3>
+  <section id="horarios">
+    <h2>Horarios</h2>
+    <div class="card">
+      <p><strong>Entrada:</strong> 8:00 AM</p>
+      <p><strong>Salida:</strong> 2:00 PM</p>
+      <p>Contamos con horario extendido y apoyo a padres de familia que requieren flexibilidad.</p>
+    </div>
+  </section>
 
-    <div class="benefits">
-      <div class="benefit">
-        <strong>Mejor concentración</strong>
-        <p>Atención plena para mejorar el rendimiento escolar.</p>
-      </div>
-      <div class="benefit">
-        <strong>Menos ansiedad</strong>
-        <p>Técnicas de respiración para calmar la mente.</p>
-      </div>
-      <div class="benefit">
-        <strong>Mayor autoestima</strong>
-        <p>Actividades diseñadas para
+  <section id="inscripcion">
+    <h2>Inscripción</h2>
+    <div class="card">
+      <p>
+        Para iniciar el proceso de inscripción, contáctanos y agenda una visita. Tendrás un
+        recorrido personalizado para conocer nuestras aulas, filosofía y personal docente.
+      </p>
+      <p><strong>Teléfono:</strong> 33 20 37 08 82</p>
+      <p><strong>Ubicación:</strong> Guadalajara, Jalisco</p>
+    </div>
+  </section>
+
+</body>
+</html>
