@@ -4,18 +4,32 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Tlahtoani Mindful Kids</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
   :root {
     --primary: #00796b;
+    --primary-light: #e8f9f6;
     --secondary: #26a69a;
     --accent: #fbc02d;
+    --accent-light: #fff8e1;
     --bg: #f9fdfb;
     --text: #1a1a1a;
     --muted: #6d6d6d;
     --radius: 18px;
     --shadow: 0 8px 20px rgba(0,0,0,0.08);
+    --shadow-hover: 0 12px 25px rgba(0,0,0,0.15);
     --maxw: 1150px;
+    --transition: all 0.3s ease;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
@@ -23,6 +37,7 @@
     background: var(--bg);
     font-family: "Inter", Arial, sans-serif;
     color: var(--text);
+    line-height: 1.6;
   }
 
   .container {
@@ -37,46 +52,127 @@
     align-items: center;
     justify-content: space-between;
     padding: 14px 0;
+    position: sticky;
+    top: 0;
+    background: rgba(249, 253, 251, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    transition: var(--transition);
   }
+  
+  header.scrolled {
+    padding: 10px 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  }
+  
   header h1 {
     margin: 0;
     font-size: 26px;
     font-weight: 800;
     color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
+  
+  header h1 i {
+    color: var(--accent);
+  }
+  
+  nav {
+    display: flex;
+    gap: 20px;
+  }
+  
   nav a {
-    margin-left: 14px;
     color: var(--primary);
-    font-weight: 700;
+    font-weight: 600;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 30px;
+    transition: var(--transition);
+    position: relative;
+  }
+  
+  nav a:hover {
+    background: var(--primary-light);
+    transform: translateY(-2px);
+  }
+  
+  nav a.active {
+    background: var(--primary);
+    color: white;
+  }
+
+  /* MOBILE MENU */
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--primary);
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: white;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-radius: 0 0 var(--radius) var(--radius);
+    z-index: 99;
+  }
+
+  .mobile-nav.active {
+    display: flex;
+  }
+
+  .mobile-nav a {
+    padding: 12px 15px;
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: 600;
+    border-bottom: 1px solid #f0f0f0;
+    transition: var(--transition);
+  }
+
+  .mobile-nav a:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-nav a:hover {
+    background: var(--primary-light);
+    padding-left: 20px;
   }
 
   /* MOBILE HEADER IMPROVED */
-  @media (max-width: 650px) {
+  @media (max-width: 768px) {
     header {
-      flex-direction: column;
-      text-align: center;
-      gap: 10px;
+      padding: 12px 0;
     }
+    
     header h1 {
-      font-size: 32px;
+      font-size: 22px;
     }
-    nav {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
+    
+    .desktop-nav {
+      display: none;
     }
-    nav a {
-      font-size: 20px;
-      padding: 6px 10px;
-      background: #e8f9f6;
-      border-radius: 10px;
+    
+    .mobile-menu-btn {
+      display: block;
     }
   }
 
   .btn {
-    padding: 12px 18px;
+    padding: 14px 28px;
     background: var(--primary);
     color: white;
     border-radius: 12px;
@@ -84,6 +180,26 @@
     font-weight: 700;
     cursor: pointer;
     box-shadow: var(--shadow);
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+  }
+
+  .btn:hover {
+    background: var(--secondary);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .btn-accent {
+    background: var(--accent);
+    color: var(--text);
+  }
+
+  .btn-accent:hover {
+    background: #f9a825;
   }
 
   /* HERO */
@@ -95,21 +211,27 @@
     overflow: hidden;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    position: relative;
   }
 
   .hero-text {
-    padding: 35px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .hero-text h2 {
     color: var(--primary);
-    font-size: 32px;
-    margin: 0 0 10px;
+    font-size: 36px;
+    margin: 0 0 15px;
+    line-height: 1.2;
   }
 
   .hero-text p {
     color: var(--muted);
-    margin-bottom: 16px;
+    margin-bottom: 25px;
+    font-size: 18px;
   }
 
   .hero-img {
@@ -118,105 +240,452 @@
     background-image: url("https://images.pexels.com/photos/8613088/pexels-photo-8613088.jpeg?auto=compress&cs=tinysrgb&w=1200");
     background-size: cover;
     background-position: center;
+    position: relative;
+  }
+
+  .hero-img::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 30%, rgba(255,255,255,0) 100%);
   }
 
   /* FEATURES / ACTIVIDADES */
   .section {
-    margin-top: 40px;
+    margin-top: 60px;
+    padding: 30px 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 40px;
   }
 
   .section h3 {
-    font-size: 26px;
+    font-size: 32px;
     color: var(--primary);
-    margin-bottom: 12px;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .section h3::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  .section p.subtitle {
+    color: var(--muted);
+    font-size: 18px;
+    max-width: 700px;
+    margin: 0 auto;
   }
 
   .activities {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
   }
 
   .card {
     background: white;
-    padding: 20px;
+    padding: 25px;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
+    transition: var(--transition);
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .card-icon {
+    font-size: 40px;
+    color: var(--primary);
+    margin-bottom: 20px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .card img {
     width: 100%;
     border-radius: var(--radius);
-    margin-bottom: 14px;
+    margin-bottom: 20px;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .card h4 {
+    font-size: 22px;
+    margin: 0 0 15px;
+    color: var(--primary);
+  }
+
+  .card p {
+    color: var(--muted);
+    flex-grow: 1;
   }
 
   /* BENEFICIOS */
   .benefits {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
   }
 
   .benefit {
-    padding: 18px;
-    background: #e8f9f6;
+    padding: 25px;
+    background: var(--primary-light);
     border-left: 6px solid var(--secondary);
     border-radius: var(--radius);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .benefit:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
   }
 
   .benefit strong {
-    font-size: 18px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .benefit strong i {
+    color: var(--accent);
   }
 
   /* HORARIOS */
+  .schedule-container {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 30px;
+    overflow-x: auto;
+  }
+
   table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 600px;
+  }
+
+  th {
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 700;
+    text-align: left;
   }
 
   th, td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
+    padding: 15px;
+    border-bottom: 1px solid #eaeaea;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  tr:hover {
+    background: #f5fdfb;
   }
 
   /* FORMULARIO */
+  .form-container {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .form-info {
+    padding-right: 20px;
+  }
+
+  .form-info h3 {
+    color: var(--primary);
+    margin-top: 0;
+  }
+
+  .form-info ul {
+    padding-left: 20px;
+  }
+
+  .form-info li {
+    margin-bottom: 10px;
+    color: var(--muted);
+  }
+
   form input, form textarea, form select {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     border-radius: 10px;
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
-    font-size: 15px;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-family: "Inter", Arial, sans-serif;
+    transition: var(--transition);
+  }
+
+  form input:focus, form textarea:focus, form select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 121, 107, 0.1);
+  }
+
+  form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
   }
 
   /* FOOTER */
   footer {
     text-align: center;
-    margin-top: 40px;
-    padding: 20px;
+    margin-top: 60px;
+    padding: 40px 20px;
     color: var(--muted);
+    background: white;
+    border-top: 1px solid #eaeaea;
+  }
+
+  .footer-content {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    text-align: left;
+  }
+
+  .footer-column h4 {
+    color: var(--primary);
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+  .footer-column p, .footer-column a {
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: block;
+    transition: var(--transition);
+  }
+
+  .footer-column a:hover {
+    color: var(--primary);
+    padding-left: 5px;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--primary-light);
+    border-radius: 50%;
+    color: var(--primary);
+    transition: var(--transition);
+  }
+
+  .social-links a:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-3px);
+  }
+
+  .copyright {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eaeaea;
+    text-align: center;
+    font-size: 14px;
   }
 
   /* RESPONSIVE */
-  @media (max-width: 850px) {
+  @media (max-width: 900px) {
     .hero {
       grid-template-columns: 1fr;
     }
+    
     .hero-img {
-      height: 260px;
+      height: 300px;
+      order: -1;
+    }
+    
+    .hero-img::after {
+      background: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 30%, rgba(255,255,255,0) 100%);
+    }
+    
+    .form-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .form-info {
+      padding-right: 0;
     }
   }
 
+  @media (max-width: 600px) {
+    .container {
+      padding: 15px;
+    }
+    
+    .hero-text {
+      padding: 25px;
+    }
+    
+    .hero-text h2 {
+      font-size: 28px;
+    }
+    
+    .section h3 {
+      font-size: 26px;
+    }
+    
+    .form-row {
+      grid-template-columns: 1fr !important;
+    }
+    
+    .card, .benefit {
+      padding: 20px;
+    }
+  }
+
+  /* ANIMACIONES */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.8s ease forwards;
+  }
+
+  .delay-1 { animation-delay: 0.2s; }
+  .delay-2 { animation-delay: 0.4s; }
+  .delay-3 { animation-delay: 0.6s; }
+
+  /* TESTIMONIOS */
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+  }
+
+  .testimonial {
+    background: white;
+    padding: 25px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+
+  .testimonial::before {
+    content: '"';
+    font-size: 80px;
+    color: var(--primary-light);
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    line-height: 1;
+  }
+
+  .testimonial p {
+    font-style: italic;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .testimonial-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-weight: bold;
+  }
+
+  .testimonial-info h4 {
+    margin: 0;
+    color: var(--primary);
+  }
+
+  .testimonial-info p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--muted);
+    font-style: normal;
+  }
 </style>
 
 </head>
 <body>
 
 <header class="container">
-  <h1>Colegio Tlahtoani • Mindful Kids</h1>
-  <nav>
-    <a href="#programa">Programa</a>
+  <h1><i class="fas fa-child"></i> Colegio Tlahtoani • Mindful Kids</h1>
+  
+  <nav class="desktop-nav">
+    <a href="#programa" class="active">Programa</a>
+    <a href="#beneficios">Beneficios</a>
     <a href="#horarios">Horarios</a>
+    <a href="#testimonios">Testimonios</a>
+    <a href="#inscripcion">Inscripción</a>
+  </nav>
+  
+  <button class="mobile-menu-btn" id="mobileMenuBtn">
+    <i class="fas fa-bars"></i>
+  </button>
+  
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#programa">Programa</a>
+    <a href="#beneficios">Beneficios</a>
+    <a href="#horarios">Horarios</a>
+    <a href="#testimonios">Testimonios</a>
     <a href="#inscripcion">Inscripción</a>
   </nav>
 </header>
@@ -224,55 +693,340 @@
 <div class="container">
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero fade-in">
     <div class="hero-text">
       <h2>Bienestar emocional para tus hijos</h2>
-      <p>Un programa diseñado para el desarrollo emocional, atención plena y relajación de niños de kínder y primaria.</p>
+      <p>Un programa diseñado para el desarrollo emocional, atención plena y relajación de niños de kínder y primaria. Ayuda a tus hijos a desarrollar herramientas para la vida.</p>
 
-      <button class="btn" onclick="document.getElementById('inscripcion').scrollIntoView({behavior:'smooth'})">Inscribir ahora</button>
+      <div>
+        <button class="btn" onclick="document.getElementById('inscripcion').scrollIntoView({behavior:'smooth'})">
+          <i class="fas fa-edit"></i> Inscribir ahora
+        </button>
+        <button class="btn btn-accent" onclick="document.getElementById('programa').scrollIntoView({behavior:'smooth'})">
+          <i class="fas fa-info-circle"></i> Conocer más
+        </button>
+      </div>
     </div>
     <div class="hero-img"></div>
   </section>
 
   <!-- ACTIVIDADES -->
   <section class="section" id="programa">
-    <h3>Actividades del programa</h3>
+    <div class="section-header">
+      <h3>Actividades del programa</h3>
+      <p class="subtitle">Nuestro programa integral combina diversas técnicas para el desarrollo completo de tus hijos</p>
+    </div>
 
     <div class="activities">
-
-      <div class="card">
-        <img src="https://images.pexels.com/photos/8436587/pexels-photo-8436587.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <div class="card fade-in delay-1">
+        <div class="card-icon">
+          <i class="fas fa-child"></i>
+        </div>
         <h4>Yoga infantil</h4>
-        <p>Posturas divertidas que ayudan a coordinación y fuerza corporal.</p>
+        <p>Posturas divertidas que ayudan a coordinación, fuerza corporal y flexibilidad, adaptadas especialmente para niños.</p>
       </div>
 
-      <div class="card">
-        <img src="https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <div class="card fade-in delay-2">
+        <div class="card-icon">
+          <i class="fas fa-brain"></i>
+        </div>
         <h4>Mindfulness</h4>
-        <p>Respiración y concentración para mejorar la atención en clase.</p>
+        <p>Respiración y concentración para mejorar la atención en clase, reducir el estrés y aumentar la claridad mental.</p>
       </div>
 
-      <div class="card">
-        <img src="https://images.pexels.com/photos/8613115/pexels-photo-8613115.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <div class="card fade-in delay-3">
+        <div class="card-icon">
+          <i class="fas fa-heart"></i>
+        </div>
         <h4>Inteligencia emocional</h4>
-        <p>Aprender a expresar emociones de forma sana.</p>
+        <p>Aprender a identificar, expresar y gestionar emociones de forma sana, desarrollando empatía y habilidades sociales.</p>
       </div>
     </div>
   </section>
 
   <!-- BENEFICIOS -->
-  <section class="section">
-    <h3>Beneficios</h3>
+  <section class="section" id="beneficios">
+    <div class="section-header">
+      <h3>Beneficios para tus hijos</h3>
+      <p class="subtitle">Los resultados positivos que notarás en el desarrollo de tus hijos</p>
+    </div>
 
     <div class="benefits">
-      <div class="benefit">
-        <strong>Mejor concentración</strong>
-        <p>Atención plena para mejorar el rendimiento escolar.</p>
+      <div class="benefit fade-in">
+        <strong><i class="fas fa-bullseye"></i> Mejor concentración</strong>
+        <p>Atención plena para mejorar el rendimiento escolar y la capacidad de enfocarse en tareas.</p>
       </div>
-      <div class="benefit">
-        <strong>Menos ansiedad</strong>
-        <p>Técnicas de respiración para calmar la mente.</p>
+      <div class="benefit fade-in delay-1">
+        <strong><i class="fas fa-wind"></i> Menos ansiedad</strong>
+        <p>Técnicas de respiración y relajación para calmar la mente y manejar situaciones estresantes.</p>
       </div>
-      <div class="benefit">
-        <strong>Mayor autoestima</strong>
-        <p>Actividades diseñadas para
+      <div class="benefit fade-in delay-2">
+        <strong><i class="fas fa-star"></i> Mayor autoestima</strong>
+        <p>Actividades diseñadas para fortalecer la confianza en sí mismos y su valor personal.</p>
+      </div>
+      <div class="benefit fade-in delay-3">
+        <strong><i class="fas fa-users"></i> Mejores relaciones</strong>
+        <p>Desarrollo de habilidades sociales y empatía para relacionarse positivamente con otros.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HORARIOS -->
+  <section class="section" id="horarios">
+    <div class="section-header">
+      <h3>Horarios</h3>
+      <p class="subtitle">Encuentra el horario que mejor se adapte a las necesidades de tu familia</p>
+    </div>
+
+    <div class="schedule-container fade-in">
+      <table>
+        <thead>
+          <tr>
+            <th>Grupo</th>
+            <th>Edades</th>
+            <th>Días</th>
+            <th>Horario</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Kínder</td>
+            <td>3-5 años</td>
+            <td>Lunes y Miércoles</td>
+            <td>3:00 PM - 4:00 PM</td>
+          </tr>
+          <tr>
+            <td>Primaria Baja</td>
+            <td>6-8 años</td>
+            <td>Martes y Jueves</td>
+            <td>3:30 PM - 4:30 PM</td>
+          </tr>
+          <tr>
+            <td>Primaria Alta</td>
+            <td>9-12 años</td>
+            <td>Lunes y Miércoles</td>
+            <td>4:30 PM - 5:30 PM</td>
+          </tr>
+          <tr>
+            <td>Fin de semana</td>
+            <td>5-12 años</td>
+            <td>Sábados</td>
+            <td>10:00 AM - 11:30 AM</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section class="section" id="testimonios">
+    <div class="section-header">
+      <h3>Lo que dicen los padres</h3>
+      <p class="subtitle">Experiencias reales de familias que han confiado en nuestro programa</p>
+    </div>
+
+    <div class="testimonials">
+      <div class="testimonial fade-in">
+        <p>Mi hija de 7 años ha mejorado notablemente su capacidad para concentrarse en la tarea escolar. Ahora puede sentarse a hacer sus deberes sin distraerse constantemente.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">M</div>
+          <div class="testimonial-info">
+            <h4>María González</h4>
+            <p>Madre de Sofia (7 años)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial fade-in delay-1">
+        <p>Desde que mi hijo participa en el programa, ha aprendido a manejar mejor su frustración. Ahora respira profundamente cuando se siente enojado en lugar de tener berrinches.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">C</div>
+          <div class="testimonial-info">
+            <h4>Carlos Rodríguez</h4>
+            <p>Padre de Diego (5 años)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial fade-in delay-2">
+        <p>Las técnicas de mindfulness han ayudado a mi hija con sus problemas para dormir. Ahora practica la respiración consciente antes de acostarse y duerme mucho mejor.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">A</div>
+          <div class="testimonial-info">
+            <h4>Ana Martínez</h4>
+            <p>Madre de Valeria (9 años)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULARIO -->
+  <section class="section" id="inscripcion">
+    <div class="section-header">
+      <h3>Inscripción</h3>
+      <p class="subtitle">Completa el formulario y nos pondremos en contacto contigo</p>
+    </div>
+
+    <div class="form-container fade-in">
+      <div class="form-info">
+        <h3>¿Por qué elegir nuestro programa?</h3>
+        <ul>
+          <li>Instructores certificados en mindfulness infantil</li>
+          <li>Grupos reducidos para atención personalizada</li>
+          <li>Materiales incluidos</li>
+          <li>Ambiente seguro y acogedor</li>
+          <li>Seguimiento del progreso de cada niño</li>
+          <li>Flexibilidad de horarios</li>
+        </ul>
+        <p><strong>Precio especial:</strong> $1,200 MXN mensuales</p>
+        <p><i class="fas fa-phone"></i> Tel: 55 1234 5678</p>
+        <p><i class="fas fa-envelope"></i> Email: info@tlahtoanikids.edu.mx</p>
+      </div>
+
+      <form id="inscriptionForm">
+        <div class="form-row">
+          <div>
+            <input type="text" placeholder="Nombre(s) *" required>
+          </div>
+          <div>
+            <input type="text" placeholder="Apellidos *" required>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div>
+            <input type="email" placeholder="Email *" required>
+          </div>
+          <div>
+            <input type="tel" placeholder="Teléfono *" required>
+          </div>
+        </div>
+        
+        <input type="text" placeholder="Nombre del niño/a *" required>
+        
+        <div class="form-row">
+          <div>
+            <input type="number" placeholder="Edad *" min="3" max="12" required>
+          </div>
+          <div>
+            <select required>
+              <option value="" disabled selected>Selecciona grupo de interés</option>
+              <option>Kínder (3-5 años)</option>
+              <option>Primaria Baja (6-8 años)</option>
+              <option>Primaria Alta (9-12 años)</option>
+              <option>Fin de semana (5-12 años)</option>
+            </select>
+          </div>
+        </div>
+        
+        <textarea placeholder="Comentarios o preguntas adicionales" rows="4"></textarea>
+        
+        <button type="submit" class="btn" style="width: 100%;">
+          <i class="fas fa-paper-plane"></i> Enviar solicitud
+        </button>
+      </form>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-column">
+      <h4>Colegio Tlahtoani</h4>
+      <p>Mindful Kids Program</p>
+      <p>Desarrollando mentes felices y corazones conscientes</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    
+    <div class="footer-column">
+      <h4>Enlaces rápidos</h4>
+      <a href="#programa">Nuestro programa</a>
+      <a href="#beneficios">Beneficios</a>
+      <a href="#horarios">Horarios</a>
+      <a href="#inscripcion">Inscripción</a>
+    </div>
+    
+    <div class="footer-column">
+      <h4>Contacto</h4>
+      <p><i class="fas fa-map-marker-alt"></i> Av. Principal 123, Col. Centro</p>
+      <p><i class="fas fa-phone"></i> 55 1234 5678</p>
+      <p><i class="fas fa-envelope"></i> info@tlahtoanikids.edu.mx</p>
+      <p><i class="fas fa-clock"></i> Lunes a Viernes: 8:00 AM - 5:00 PM</p>
+    </div>
+  </div>
+  
+  <div class="copyright">
+    <p>&copy; 2023 Colegio Tlahtoani • Mindful Kids. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  // Menú móvil
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  
+  mobileMenuBtn.addEventListener('click', () => {
+    mobileNav.classList.toggle('active');
+    mobileMenuBtn.innerHTML = mobileNav.classList.contains('active') 
+      ? '<i class="fas fa-times"></i>' 
+      : '<i class="fas fa-bars"></i>';
+  });
+  
+  // Cerrar menú móvil al hacer clic en un enlace
+  const mobileLinks = document.querySelectorAll('.mobile-nav a');
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.remove('active');
+      mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    });
+  });
+  
+  // Cambiar estilo del header al hacer scroll
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+  
+  // Manejar envío del formulario
+  const form = document.getElementById('inscriptionForm');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('¡Gracias por tu interés! Nos pondremos en contacto contigo pronto.');
+    form.reset();
+  });
+  
+  // Actualizar enlace activo en el menú al hacer scroll
+  window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav a');
+    
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (scrollY >= (sectionTop - 200)) {
+        current = section.getAttribute('id');
+      }
+    });
+    
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
